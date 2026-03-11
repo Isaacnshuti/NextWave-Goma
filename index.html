@@ -4,10 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="NextWave Goma — Cabinet de développement logiciel, cybersécurité et intelligence artificielle basé à Goma, République Démocratique du Congo."/>
-  <title>NextWave Goma | Innovateurs Logiciels & Solutions Numériques</title>
-  
+  <title>NextWaveGoma</title>
   <link rel="icon" type="image/png" href="logo (1).png"/>
-
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
   <style>
@@ -20,7 +18,7 @@
       --r:12px; --rL:20px; --ease:cubic-bezier(.4,0,.2,1);
     }
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
+    html{scroll-behavior:smooth;scroll-padding-top:80px;}
     body{background:var(--bg0);color:var(--white);font-family:'Outfit',sans-serif;overflow-x:hidden;line-height:1.7;}
     a{text-decoration:none;color:inherit;}
     ul{list-style:none;}
@@ -39,8 +37,24 @@
     nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:linear-gradient(90deg,var(--cyan),var(--blue));transition:width .3s var(--ease);}
     nav a:hover{color:var(--white);}
     nav a:hover::after{width:100%;}
+    nav a.active{color:var(--white);}
+    nav a.active::after{width:100%;}
     .hbtn{background:linear-gradient(135deg,var(--cyan),var(--blue));color:#fff;padding:10px 22px;border-radius:var(--r);font-weight:700;font-size:.85rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s var(--ease);box-shadow:0 4px 18px var(--gblue);}
     .hbtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--gcyan);filter:brightness(1.1);}
+
+    /* HAMBURGER */
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;z-index:600;}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:all .3s var(--ease);}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+    .hamburger.open span:nth-child(2){opacity:0;}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
+
+    /* MOBILE NAV */
+    .mobile-nav{display:none;position:fixed;inset:0;background:rgba(5,12,24,.98);backdrop-filter:blur(20px);z-index:490;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .3s var(--ease);}
+    .mobile-nav.open{opacity:1;pointer-events:all;}
+    .mobile-nav a{font-size:1.5rem;font-weight:700;color:var(--off);transition:color .25s;}
+    .mobile-nav a:hover{color:var(--cyan);}
+    .mobile-nav .btn-p{font-size:1rem;padding:14px 32px;}
 
     /* HERO */
     #hero{min-height:100vh;display:flex;align-items:center;padding:140px 6% 100px;position:relative;overflow:hidden;}
@@ -59,7 +73,7 @@
     .eyebrow{display:inline-flex;align-items:center;gap:10px;padding:6px 18px 6px 10px;background:rgba(26,184,240,.08);border:1px solid var(--borderM);border-radius:100px;font-size:.78rem;font-weight:600;color:var(--cyan);letter-spacing:.4px;margin-bottom:30px;animation:fadeUp .8s var(--ease) both;}
     .live{width:8px;height:8px;border-radius:50%;background:var(--cyan);animation:ping 2s ease-out infinite;flex-shrink:0;}
     @keyframes ping{0%{box-shadow:0 0 0 0 rgba(26,184,240,.65);}70%{box-shadow:0 0 0 9px transparent;}100%{box-shadow:0 0 0 0 transparent;}}
-    .hero-h1{font-size:clamp(3rem,6.5vw,5.6rem);font-weight:900;line-height:1.02;letter-spacing:-2.5px;margin-bottom:26px;animation:fadeUp .8s var(--ease) .15s both;}
+    .hero-h1{font-size:clamp(2.4rem,6.5vw,5.6rem);font-weight:900;line-height:1.02;letter-spacing:-2.5px;margin-bottom:26px;animation:fadeUp .8s var(--ease) .15s both;}
     .hero-h1 .g{display:block;background:linear-gradient(110deg,var(--white) 0%,var(--cyan) 50%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
     .hero-p{font-size:1.05rem;color:var(--off);font-weight:400;max-width:580px;line-height:1.9;margin-bottom:44px;animation:fadeUp .8s var(--ease) .3s both;}
     .hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s var(--ease) .45s both;}
@@ -82,7 +96,7 @@
     /* SECTION TITLES */
     .sec-ey{display:inline-flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:2.5px;color:var(--cyan);margin-bottom:12px;}
     .sec-ey::before{content:'';width:26px;height:2px;background:linear-gradient(90deg,var(--cyan),var(--blue));display:block;}
-    .sec-h2{font-size:clamp(2rem,3.8vw,2.85rem);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:56px;}
+    .sec-h2{font-size:clamp(1.8rem,3.8vw,2.85rem);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:56px;}
     .sec-h2 em{font-style:normal;color:var(--muted2);font-weight:300;}
 
     /* À PROPOS */
@@ -227,58 +241,113 @@
 
     /* ANIMATIONS */
     @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-
-    /* Smooth spring-eased reveal */
     .rv{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
     .rv.on{opacity:1;transform:none;}
-
-    /* Directional variants */
     .rv-l{opacity:0;transform:translateX(46px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
     .rv-l.on{opacity:1;transform:none;}
     .rv-r{opacity:0;transform:translateX(-46px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
     .rv-r.on{opacity:1;transform:none;}
     .rv-s{opacity:0;transform:scale(.93);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1);}
     .rv-s.on{opacity:1;transform:scale(1);}
-
-    /* Stagger delays */
     .rv.d1,.rv-l.d1,.rv-r.d1{transition-delay:.1s;}
     .rv.d2,.rv-l.d2,.rv-r.d2{transition-delay:.22s;}
     .rv.d3,.rv-l.d3,.rv-r.d3{transition-delay:.34s;}
     .rv.d4,.rv-l.d4,.rv-r.d4{transition-delay:.46s;}
     .rv.d5{transition-delay:.58s;}
 
-    /* Active nav */
-    nav a.active{color:var(--white);}
-    nav a.active::after{width:100%;}
-
-    /* Scroll snap offset for fixed header */
-    html{scroll-padding-top:80px;}
-
-    /* RESPONSIVE */
+    /* ── RESPONSIVE ── */
     @media(max-width:1024px){
       nav,.hbtn{display:none;}
+      .hamburger{display:flex;}
+      .mobile-nav{display:flex;}
       .apropos-g,.svc-intro,.contact-g{grid-template-columns:1fr;gap:48px;}
       .proc-g{grid-template-columns:1fr 1fr;}
       .proc-step:nth-child(2){border-right:none;}
       .proc-step:nth-child(1),.proc-step:nth-child(2){border-bottom:1px solid var(--border);}
-      .temo-g{grid-template-columns:1fr;}
+      .temo-g{grid-template-columns:1fr 1fr;}
       .stats-g{grid-template-columns:1fr 1fr;}
-      .st:nth-child(2){border-right:none;}.st:nth-child(3){border-right:1px solid var(--border);}
+      .st:nth-child(2){border-right:none;}
+      .st:nth-child(3){border-right:1px solid var(--border);}
+      .st:nth-child(3),.st:nth-child(4){border-top:1px solid var(--border);}
       .svc-g{grid-template-columns:1fr;}
-      .sc-card{border-right:none;}.sc-card:nth-child(3){border-bottom:1px solid var(--border);}
-      .port-g{grid-template-columns:1fr;}.pw{grid-column:span 1;}
+      .sc-card{border-right:none;}
+      .sc-card:nth-child(3){border-bottom:1px solid var(--border);}
+      .port-g{grid-template-columns:1fr;}
+      .pw{grid-column:span 1;}
+      .pw .pc-iw{height:280px;}
       .port-hdr{flex-direction:column;align-items:flex-start;gap:16px;}
       .frow{grid-template-columns:1fr;}
       .ft-top{grid-template-columns:1fr 1fr;gap:36px;}
+      #hero{padding:120px 6% 80px;}
     }
-    @media(max-width:600px){
-      .hero-h1{font-size:2.6rem;letter-spacing:-1.5px;}
-      .ft-top{grid-template-columns:1fr;}
+
+    @media(max-width:768px){
+      #apropos,#services,#processus,#portfolio,#temoignages,#contact{padding:80px 5%;}
+      .stats-band{padding:0 5%;}
+      .temo-g{grid-template-columns:1fr;}
+      .proc-g{grid-template-columns:1fr;}
+      .proc-step{border-right:none !important;border-bottom:1px solid var(--border);}
+      .proc-step:last-child{border-bottom:none;}
+      .sc-card{padding:32px 28px;}
+      .cf{padding:30px 24px;}
+      .ft-top{grid-template-columns:1fr;gap:32px;}
+      .hero-p{font-size:.95rem;}
+    }
+
+    /* TOUS TYPES D'ÉCRANS MOBILES (iPhone, Samsung, etc.) */
+    @media(max-width:480px){
+      #hdr{padding:16px 5%;}
+      #hdr.sc{padding:12px 5%;}
+      #hero{padding:110px 5% 70px;}
+      
+      /* Ajustement dynamique pour le gros titre */
+      .hero-h1{font-size:clamp(2rem, 10vw, 2.5rem);letter-spacing:-1px;}
+      .hero-p{font-size:.88rem;}
+      
+      .hero-btns{flex-direction:column;gap:10px;width:100%;}
+      .hero-btns .btn-p, .hero-btns .btn-s{width:100%;justify-content:center;}
+      
+      .stats-band{margin-top:20px;}
+      /* Force 1 seule colonne pour les stats sur mobile pour ne pas écraser le texte */
+      .stats-g{grid-template-columns:1fr;}
+      .st{padding:20px 18px; border-right:none !important; border-bottom:1px solid var(--border) !important; border-top:none !important;}
+      .st:last-child{border-bottom:none !important;}
+      .stn{font-size:1.8rem;}
+      
       .values{grid-template-columns:1fr;}
+      .ceo-card{padding:28px 22px;}
+      .sec-h2{font-size:1.6rem;margin-bottom:32px;}
+      
+      .pc-body{padding:20px 20px 22px;}
+      .pc-title{font-size:1.1rem;}
+      
+      .temo{padding:26px 22px;}
+      .contact-g{gap:36px;}
+      .frow{grid-template-columns:1fr;}
+      
+      /* SOLUTION CRITIQUE POUR LES LONGS EMAILS (évite le scroll horizontal) */
+      .cd-tx strong, .cd-tx span, .ft-col a, .ft-copy, .ft-made { 
+        word-break: break-word; 
+        overflow-wrap: break-word; 
+      }
+      
+      footer{padding:40px 5% 30px;}
+      .ft-bottom{flex-direction:column;align-items:flex-start;gap:12px;}
+      .btn-p,.btn-s{padding:11px 20px;font-size:.85rem;}
+    }
+
+    /* Sécurité supplémentaire pour les très petits écrans (ex: iPhone SE - 320px) */
+    @media(max-width:360px){
+      .sec-h2 { font-size: 1.4rem; }
+      .cd-ic { width: 32px; height: 32px; font-size: 0.8rem; }
+      .sc-card { padding: 24px 20px; }
+      .pc-iw, .pw .pc-iw { height: 200px; }
     }
   </style>
 </head>
 <body>
+
+<div id="spb"></div>
 
 <header id="hdr">
   <a href="index.html" class="logo">
@@ -296,7 +365,19 @@
     <a href="#contact">Contact</a>
   </nav>
   <a href="#contact" class="hbtn">Demander un Devis <i class="fa-solid fa-arrow-right"></i></a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#apropos" onclick="closeMenu()">À Propos</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#processus" onclick="closeMenu()">Processus</a>
+  <a href="#portfolio" onclick="closeMenu()">Portfolio</a>
+  <a href="#temoignages" onclick="closeMenu()">Témoignages</a>
+  <a href="#contact" onclick="closeMenu()" class="btn-p">Demander un Devis <i class="fa-solid fa-arrow-right"></i></a>
+</div>
 
 <section id="hero">
   <div class="hmesh"></div>
@@ -359,7 +440,7 @@
             <div class="loc"><i class="fa-solid fa-location-dot" style="color:var(--cyan);font-size:.72rem;margin-right:5px;"></i>Goma, Nord-Kivu — République Démocratique du Congo</div>
           </div>
         </div>
-        <p class="ceo-bio">« Ingénieur logiciel passionné et entrepreneur visionnaire, j'ai fondé NextWave Goma avec la conviction que l'Afrique peut et doit produire des solutions technologiques de rang mondial. Mon expertise couvre le développement web full-stack, la cybersécurité offensive et défensive, et les systèmes d'intelligence artificielle. Chaque projet que je dirige est une opportunité de prouver que l'excellence technique n'a pas de frontières. »</p>
+        <p class="ceo-bio">Ingénieur logiciel passionné et entrepreneur visionnaire, j'ai fondé NextWave Goma avec la conviction que l'Afrique peut et doit produire des solutions technologiques de rang mondial. Mon expertise couvre le développement web full-stack, la cybersécurité offensive et défensive, et les systèmes d'intelligence artificielle. Chaque projet que je dirige est une opportunité de prouver que l'excellence technique n'a pas de frontières.</p>
         <div class="ceo-skills">
           <span class="cs">Django / Python</span>
           <span class="cs">Swift / iOS</span>
@@ -458,7 +539,7 @@
         <span class="pc-badge">Système de Gestion · Smart City</span>
       </div>
       <div class="pc-body">
-        <div class="pc-title">GomaTrafic — Gestion Digitale du Trafic Urbain</div>
+        <div class="pc-title">GomaTrafic</div>
         <p class="pc-desc">Développement d'une plateforme centralisée pour la digitalisation complète des amendes de trafic routier urbain à Goma. Le système prend en charge l'enregistrement des infractions par les agents, la gestion des contraventions, le suivi des paiements en temps réel, la génération de rapports statistiques pour les autorités et l'interface usager pour la consultation et le règlement des amendes. Une réponse technologique concrète aux défis de la modernisation urbaine en RDC.</p>
         <div class="pc-tech"><span class="pc-t">Django</span><span class="pc-t">Python</span><span class="pc-t">PostgreSQL</span><span class="pc-t">API REST</span><span class="pc-t">Tableau de bord analytique</span><span class="pc-t">Gestion des rôles</span></div>
         <div class="pc-link">Voir les détails du projet <i class="fa-solid fa-arrow-right"></i></div>
@@ -471,7 +552,7 @@
         <span class="pc-badge">Application Mobile · Swift / iOS</span>
       </div>
       <div class="pc-body">
-        <div class="pc-title">RwandaCare — Application de Santé Mobile</div>
+        <div class="pc-title">RwandaCare</div>
         <p class="pc-desc">Application iOS native développée en Swift pour optimiser l'accès aux soins médicaux au Rwanda. Fonctionnalités : prise de rendez-vous en ligne, gestion du dossier médical patient, suivi des prescriptions et téléconsultation entre professionnels de santé.</p>
         <div class="pc-tech"><span class="pc-t">Swift</span><span class="pc-t">iOS</span><span class="pc-t">HealthKit</span><span class="pc-t">API REST</span><span class="pc-t">UX Mobile</span></div>
         <div class="pc-link">Voir les détails <i class="fa-solid fa-arrow-right"></i></div>
@@ -484,7 +565,7 @@
         <span class="pc-badge">IA · Cybersécurité · Réseaux</span>
       </div>
       <div class="pc-body">
-        <div class="pc-title">Système IDS — Détection d'Intrusion par IA</div>
+        <div class="pc-title">Système IDS</div>
         <p class="pc-desc">Conception d'un système de détection d'intrusion réseau reposant sur des modèles de Machine Learning et des réseaux de neurones profonds. Détection, classification et analyse des menaces en temps réel avec un taux de détection supérieur à 97% sur les jeux de données de référence.</p>
         <div class="pc-tech"><span class="pc-t">Python</span><span class="pc-t">TensorFlow</span><span class="pc-t">Scikit-learn</span><span class="pc-t">Analyse réseau</span><span class="pc-t">ML supervisé</span></div>
         <div class="pc-link">Voir les détails <i class="fa-solid fa-arrow-right"></i></div>
@@ -497,8 +578,8 @@
         <span class="pc-badge">Application Web · Django · Sécurité Avancée</span>
       </div>
       <div class="pc-body">
-        <div class="pc-title">Plateforme Yacubike — Application Web Hautement Sécurisée</div>
-        <p class="pc-desc">Développement complet d'une application web dynamique pour la gestion d'une flotte de vélos urbains. L'architecture back-end a été soumise à des tests d'intrusion rigoureux incluant attaques par force brute, injection SQL, cross-site scripting (XSS) et session hijacking. La plateforme a résisté à l'intégralité des vecteurs d'attaque testés, illustrant notre philosophie fondamentale : la sécurité n'est pas une option, elle est au cœur de chaque décision architecturale.</p>
+        <div class="pc-title">Plateforme Yacubike</div>
+        <p class="pc-desc">Développement complet d'une application web dynamique pour la gestion d'une flotte de vélos urbains à Kigali. L'architecture back-end a été soumise à des tests d'intrusion rigoureux incluant attaques par force brute, injection SQL, cross-site scripting (XSS) et session hijacking. La plateforme a résisté à l'intégralité des vecteurs d'attaque testés, illustrant notre philosophie fondamentale : la sécurité n'est pas une option, elle est au cœur de chaque décision architecturale.</p>
         <div class="pc-tech"><span class="pc-t">Django</span><span class="pc-t">Python</span><span class="pc-t">PostgreSQL</span><span class="pc-t">Sécurité avancée</span><span class="pc-t">Tests d'intrusion</span><span class="pc-t">CSRF / XSS Protection</span></div>
         <div class="pc-link">Voir les détails du projet <i class="fa-solid fa-arrow-right"></i></div>
       </div>
@@ -516,19 +597,19 @@
 
     <div class="temo rv">
       <div class="stars">★★★★★</div>
-      <p class="temo-txt">« NextWave Goma a conçu et livré la plateforme YacuBike avec une rigueur et une qualité que je n'espérais pas trouver localement. Nshuti a parfaitement compris notre modèle métier et a traduit nos besoins en une application robuste, sécurisée et agréable à utiliser. Un partenaire de confiance absolue. »</p>
+      <p class="temo-txt">NextWave Goma a conçu et livré la plateforme YacuBike avec une rigueur et une qualité que je n'espérais pas trouver localement. Nshuti a parfaitement compris notre modèle métier et a traduit nos besoins en une application robuste, sécurisée et agréable à utiliser. Un partenaire de confiance absolue.</p>
       <div class="temo-auth">
         <div class="temo-av">MK</div>
         <div>
           <div class="temo-name">Marcelin Kyambo</div>
-          <div class="temo-role">Fondateur & CEO, YacuBike — Goma, DRC</div>
+          <div class="temo-role">Fondateur & CEO, YacuBike — Kigali, Rwanda</div>
         </div>
       </div>
     </div>
 
     <div class="temo rv d1">
       <div class="stars">★★★★★</div>
-      <p class="temo-txt">« Travailler avec NextWave Goma a été une révélation. L'expertise technique de l'équipe est impressionnante, et Nshuti apporte une vision stratégique qui va bien au-delà du simple développement. Ils livrent ce qu'ils promettent, dans les délais, avec une qualité irréprochable. »</p>
+      <p class="temo-txt">Travailler avec NextWave Goma a été une révélation. L'expertise technique de l'équipe est impressionnante, et Nshuti apporte une vision stratégique qui va bien au-delà du simple développement. Ils livrent ce qu'ils promettent, dans les délais, avec une qualité irréprochable.</p>
       <div class="temo-auth">
         <div class="temo-av">FM</div>
         <div>
@@ -540,7 +621,7 @@
 
     <div class="temo rv d2">
       <div class="stars">★★★★★</div>
-      <p class="temo-txt">« NextWave Goma a su comprendre les exigences techniques et éditoriales de KivuZoom. La solution développée par Nshuti et son équipe est stable, performante et reflète parfaitement notre identité. C'est le cabinet qu'il faut contacter quand on veut du sérieux dans la région. »</p>
+      <p class="temo-txt">NextWave Goma a su comprendre les exigences techniques et éditoriales de KivuZoom. La solution développée par Nshuti et son équipe est stable, performante et reflète parfaitement notre identité. C'est le cabinet qu'il faut contacter quand on veut du sérieux dans la région.</p>
       <div class="temo-auth">
         <div class="temo-av">ER</div>
         <div>
@@ -572,6 +653,13 @@
           <div class="cd-tx">
             <strong>nshutiisaac96@gmail.com</strong>
             <span>Réponse garantie sous 24 heures</span>
+          </div>
+        </a>
+        <a href="mailto:info@nextwave-goma.vercel.app" class="cd-i" style="text-decoration:none;">
+          <div class="cd-ic"><i class="fa-solid fa-envelope"></i></div>
+          <div class="cd-tx">
+            <strong>info@nextwave-goma.vercel.app</strong>
+            <span>Email professionnel NextWave Goma</span>
           </div>
         </a>
         <a href="https://wa.me/243971491323" target="_blank" class="cd-i" style="text-decoration:none;">
@@ -647,7 +735,7 @@
 <footer>
   <div class="ft-top">
     <div class="ft-brand">
-      <a href="index.html" class="logo" style="margin-bottom:16px; text-decoration: none;">
+      <a href="index.html" class="logo" style="margin-bottom:16px;text-decoration:none;">
         <img src="logo (1).png" alt="NextWave Goma"/>
         <div class="logo-txt">
           <span class="ln">NextWave</span>
@@ -676,6 +764,7 @@
     <div class="ft-col">
       <h4>Contact Direct</h4>
       <a href="mailto:nshutiisaac96@gmail.com">nshutiisaac96@gmail.com</a>
+      <a href="mailto:info@nextwave-goma.vercel.app">info@nextwave-goma.vercel.app</a>
       <a href="https://wa.me/243971491323" target="_blank">+243 097 149 1323</a>
       <a href="#apropos">Nshuti Bahati Isaac — CEO</a>
       <a href="#">Goma, Nord-Kivu, DRC</a>
@@ -689,12 +778,20 @@
 
 <script>
   /* ── SCROLL PROGRESS BAR ── */
-  const spb = document.createElement('div');
-  spb.id = 'spb';
-  document.body.prepend(spb);
-
-  /* ── HEADER SCROLL ── */
+  const spb = document.getElementById('spb');
   const hdr = document.getElementById('hdr');
+
+  /* ── HAMBURGER MENU ── */
+  function toggleMenu() {
+    document.getElementById('hamburger').classList.toggle('open');
+    document.getElementById('mobileNav').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileNav').classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('hamburger').classList.remove('open');
+    document.getElementById('mobileNav').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
   /* ── NAV SMOOTH CLICK ── */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -711,7 +808,7 @@
   const heroGrid = document.querySelector('.hgrid');
 
   /* ── SECTIONS FOR ACTIVE NAV ── */
-  const sections = document.querySelectorAll('section[id], div[id="hero"]');
+  const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('nav a[href^="#"]');
 
   function setActiveNav() {
@@ -733,7 +830,6 @@
       }
     });
   }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
-
   document.querySelectorAll('.rv, .rv-l, .rv-r, .rv-s').forEach(el => obs.observe(el));
 
   /* ── MAIN SCROLL HANDLER (rAF throttled) ── */
@@ -743,27 +839,18 @@
       requestAnimationFrame(() => {
         const sy = window.scrollY;
         const dh = document.documentElement.scrollHeight - window.innerHeight;
-
-        // Progress bar
         spb.style.width = (dh > 0 ? (sy / dh) * 100 : 0) + '%';
-
-        // Header
         hdr.classList.toggle('sc', sy > 50);
-
-        // Hero parallax — subtle depth on orb + grid
-        if (heroOrb)  heroOrb.style.transform  = `scale(${1 + sy * 0.00005}) translateY(${sy * 0.18}px)`;
-        if (heroGrid) heroGrid.style.transform  = `translateY(${sy * 0.06}px)`;
-
-        // Active nav
+        if (heroOrb)  heroOrb.style.transform = `scale(${1 + sy * 0.00005}) translateY(${sy * 0.18}px)`;
+        if (heroGrid) heroGrid.style.transform = `translateY(${sy * 0.06}px)`;
         setActiveNav();
-
         ticking = false;
       });
       ticking = true;
     }
   });
 
-  /* ── COUNTER ANIMATION for stats ── */
+  /* ── COUNTER ANIMATION ── */
   const counters = document.querySelectorAll('.stn');
   const cntObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
@@ -778,7 +865,7 @@
       function tick(now) {
         const p = Math.min((now - start) / dur, 1);
         const ease = 1 - Math.pow(1 - p, 3);
-        el.textContent = (num < 10 ? Math.round(ease * num) : Math.round(ease * num)) + suffix;
+        el.textContent = Math.round(ease * num) + suffix;
         if (p < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -790,17 +877,13 @@
   /* ── FORM SUBMIT ── */
   function handleSubmit(e) {
     e.preventDefault();
-    
     const btn = e.target.querySelector('.cf-btn');
     const originalText = btn.innerHTML;
-    
     btn.innerHTML = 'Envoi en cours... <i class="fa-solid fa-spinner fa-spin"></i>';
     btn.style.pointerEvents = 'none';
-
     setTimeout(() => {
       btn.innerHTML = 'Message envoyé ! <i class="fa-solid fa-check"></i>';
       e.target.reset();
-      
       setTimeout(() => {
         btn.innerHTML = originalText;
         btn.style.pointerEvents = 'auto';
